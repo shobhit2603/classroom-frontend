@@ -1,80 +1,69 @@
+import { GraduationCap, School } from "lucide-react";
+
+export const USER_ROLES = {
+  STUDENT: "student",
+  TEACHER: "teacher",
+  ADMIN: "admin",
+};
+
+export const ROLE_OPTIONS = [
+  {
+    value: USER_ROLES.STUDENT,
+    label: "Student",
+    icon: GraduationCap,
+  },
+  {
+    value: USER_ROLES.TEACHER,
+    label: "Teacher",
+    icon: School,
+  },
+];
+
 export const DEPARTMENTS = [
-  "English",
+  "Computer Science",
+  "Mathematics",
   "Physics",
   "Chemistry",
-  "Engineering Mathematics",
-  "Compiler Design",
-  "Computer Networks",
-  "Theory of Computation",
-  "Artificial Intelligence",
-  "Machine Learning",
-  "Deep Learning",
-  "Computer Graphics",
-  "Database Management Systems",
-  "Operating Systems",
-  "Data Structures and Algorithms",
-  "Programming Languages",
-  "Software Engineering",
-  "Web Development",
-  "Mobile Development",
-  "Cloud Computing",
-  "Cybersecurity",
-];
+  "Biology",
+  "English",
+  "History",
+  "Geography",
+  "Economics",
+  "Business Administration",
+  "Engineering",
+  "Psychology",
+  "Sociology",
+  "Political Science",
+  "Philosophy",
+  "Education",
+  "Fine Arts",
+  "Music",
+  "Physical Education",
+  "Law",
+] as const;
 
-export const DEPARTMENT_OPTIONS = DEPARTMENTS.map((department) => ({
-  label: department,
-  value: department,
+export const DEPARTMENT_OPTIONS = DEPARTMENTS.map((dept) => ({
+  value: dept,
+  label: dept,
 }));
 
-export interface Subject {
-  id: string;
-  courseCode: string;
-  name: string;
-  department: string;
-  description: string;
-}
-
-export const MOCK_SUBJECTS: Subject[] = [
-  {
-    id: "1",
-    courseCode: "CS101",
-    name: "Introduction to Computer Science",
-    department: "Computer Science",
-    description: "Fundamental concepts of programming and computer science."
-  },
-  {
-    id: "2",
-    courseCode: "MATH201",
-    name: "Engineering Mathematics",
-    department: "Engineering Mathematics",
-    description: "Advanced calculus and linear algebra for engineering applications."
-  },
-  {
-    id: "3",
-    courseCode: "CS305",
-    name: "Database Management Systems",
-    department: "Database Management Systems",
-    description: "Concepts and principles of database management systems, relational models, and SQL."
-  },
-  {
-    id: "4",
-    courseCode: "ENG102",
-    name: "Technical Communication",
-    department: "English",
-    description: "Developing effective writing and communication skills for technical fields."
-  },
-  {
-    id: "5",
-    courseCode: "CS410",
-    name: "Artificial Intelligence",
-    department: "Artificial Intelligence",
-    description: "Introduction to AI concepts, problem-solving, search algorithms, and machine learning basics."
-  },
-  {
-    id: "6",
-    courseCode: "CS301",
-    name: "Operating Systems",
-    department: "Operating Systems",
-    description: "Principles of operating systems including processes, memory management, and file systems."
-  }
+export const MAX_FILE_SIZE = 3 * 1024 * 1024; // 3MB in bytes
+export const ALLOWED_TYPES = [
+  "image/png",
+  "image/jpeg",
+  "image/jpg",
+  "image/webp",
 ];
+
+export const CLOUDINARY_UPLOAD_URL = import.meta.env.VITE_CLOUDINARY_UPLOAD_URL;
+export const CLOUDINARY_CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+export const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
+
+export const BASE_URL = import.meta.env.VITE_API_URL;
+export const ACCESS_TOKEN_KEY = import.meta.env.VITE_ACCESS_TOKEN_KEY;
+export const REFRESH_TOKEN_KEY = import.meta.env.VITE_REFRESH_TOKEN_KEY;
+
+export const REFRESH_TOKEN_URL = `${BASE_URL}/refresh-token`;
+
+export const CLOUDINARY_UPLOAD_PRESET = import.meta.env
+  .VITE_CLOUDINARY_UPLOAD_PRESET;
