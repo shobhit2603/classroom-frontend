@@ -52,7 +52,7 @@ const Create = () => {
 
   const {
     handleSubmit,
-    formState: { isSubmitting, errors },
+    formState: { isSubmitting },
     control,
   } = form;
 
@@ -155,11 +155,18 @@ const Create = () => {
                         />
                       </FormControl>
                       <FormMessage />
-                      {errors.bannerCldPubId && !errors.bannerUrl && (
-                        <p className="text-destructive text-sm">
-                          {errors.bannerCldPubId.message}
-                        </p>
-                      )}
+                      <FormField
+                        control={control}
+                        name="bannerCldPubId"
+                        render={({ field: pubIdField }) => (
+                          <FormItem className="space-y-0">
+                            <FormControl>
+                              <input type="hidden" {...pubIdField} value={pubIdField.value || ""} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
                     </FormItem>
                   )}
                 />

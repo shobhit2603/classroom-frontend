@@ -3,6 +3,8 @@ import { UploadWidgetProps, UploadWidgetValue } from "@/types";
 import { UploadCloud, Trash, Loader2 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+
 
 const UploadWidget = ({
   value = null,
@@ -84,17 +86,23 @@ const UploadWidget = ({
     try {
       if (deleteToken) {
         const url = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/delete_by_token`;
-        await fetch(url, {
+        const response = await fetch(url, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ token: deleteToken }),
         });
+        
+        const data = await response.json();
+        if (!response.ok || data.result !== "ok") {
+          throw new Error(data.error?.message || "Failed to remove image");
+        }
       }
       onChangeRef.current?.(null);
       setPreview(null);
       setDeleteToken(null);
     } catch (error) {
       console.error("Error removing image", error);
+      toast.error(error instanceof Error ? error.message : "Failed to remove image");
     } finally {
       setIsRemoving(false);
     }
