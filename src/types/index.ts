@@ -39,6 +39,7 @@ declare global {
 
   interface CloudinaryWidget {
     open: () => void;
+    close: (options?: { quiet?: boolean }) => void;
   }
 
   interface Window {
